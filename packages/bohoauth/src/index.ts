@@ -54,9 +54,9 @@ export const bohoAuth = (options: BohoAuthOptions) => {
       const isProtectedPath = protectedPaths.some((path) =>
         currentPath.startsWith(path),
       );
-      if (!isProtectedPath) return NextResponse.next();
+      if (!isProtectedPath && currentPath !== loginPath)
+        return NextResponse.next();
 
-      // Handle login page separately
       const isLoginPage = currentPath === loginPath;
 
       // If no token, redirect to login (except if already on login page)
