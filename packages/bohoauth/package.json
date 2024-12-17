@@ -22,5 +22,8 @@
   },
   "dependencies": {
     "jose": "^5.9.6"
+  },
+  "peerDependencies": {
+    "next": "^14.0.0"
   }
 }
