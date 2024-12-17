@@ -1,18 +1,6 @@
 import * as jose from "jose";
-
-// auth.ts (your library's entry point)
-type AuthOptions = {
-  // defaults to BOHO_PASSWORD
-  password: string;
-  // defaults to BOHO_SECRET
-  secret: string;
-  // defaults to 1h
-  expiresIn?: string;
-  callbacks?: {
-    signIn?: (...args: any[]) => Promise<any>;
-    signOut?: (...args: any[]) => Promise<any>;
-  };
-};
+import { NextRequest, NextResponse } from "next/server.js";
+import { AuthOptions } from "./types.js";
 
 const createHandler = (method: string, options: AuthOptions) => {
   const key = options.password || process.env.BOHO_PASSWORD;
@@ -21,10 +9,10 @@ const createHandler = (method: string, options: AuthOptions) => {
 
   return async (req: Request) => {
     // Implement logic for handling requests
-    if (method === "GET") {
-      // Handle GET requests
-      return new Response("GET handler response");
-    }
+    // if (method === "GET") {
+    //   // Handle GET requests
+    //   return new Response("GET handler response");
+    // }
     if (method === "POST") {
       // Handle POST requests
       try {
@@ -59,10 +47,48 @@ const createHandler = (method: string, options: AuthOptions) => {
 };
 
 export const initializeAuth = (options: AuthOptions) => {
+  const secret = options.secret || process.env.BOHO_SECRET;
+
   return {
     handlers: {
-      GET: createHandler("GET", options),
       POST: createHandler("POST", options),
+    },
+    middleware: async (request: NextRequest) => {
+      const loginPath = options.middleware?.loginPath || "/login";
+      const protectedPaths = options.middleware?.protectedPaths || [];
+      const currentPath = request.nextUrl.pathname;
+      const token = request.cookies.get("boho_token")?.value;
+
+      // Early return for unprotected paths
+      const isProtectedPath = protectedPaths.some((path) =>
+        currentPath.startsWith(path),
+      );
+      if (!isProtectedPath) return NextResponse.next();
+
+      // Handle login page separately
+      const isLoginPage = currentPath === loginPath;
+
+      // If no token, redirect to login (except if already on login page)
+      if (!token) {
+        return isLoginPage
+          ? NextResponse.next()
+          : NextResponse.redirect(new URL(loginPath, request.url));
+      }
+
+      // Verify token and handle accordingly
+      try {
+        await jose.jwtVerify(token, new TextEncoder().encode(secret));
+
+        // Redirect away from login page if authenticated
+        return isLoginPage
+          ? NextResponse.redirect(new URL("/", request.url))
+          : NextResponse.next();
+      } catch (error) {
+        // Invalid token behaves same as no token
+        return isLoginPage
+          ? NextResponse.next()
+          : NextResponse.redirect(new URL(loginPath, request.url));
+      }
     },
     // Optionally expose other utility methods
     signIn: async () => {
