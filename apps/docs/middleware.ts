@@ -1,4 +1,3 @@
-import { NextRequest } from "next/server";
 import { boho } from "~/lib/boho";
 
 export const { middleware } = boho;
