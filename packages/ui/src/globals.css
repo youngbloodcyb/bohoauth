@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* BoxComponent.css */
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
