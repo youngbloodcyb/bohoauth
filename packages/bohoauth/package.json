@@ -1,0 +1,22 @@
+{
+  "name": "@repo/bohoauth",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "exports": {
+    "./add": {
+      "types": "./src/add.ts",
+      "default": "./dist/add.js"
+    },
+    "./subtract": {
+      "types": "./src/subtract.ts",
+      "default": "./dist/subtract.js"
+    }
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "latest"
+  }
+}
