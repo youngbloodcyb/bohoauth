@@ -1,57 +1,48 @@
 import * as jose from "jose";
 import { NextRequest, NextResponse } from "next/server.js";
-import { AuthOptions } from "./types.js";
+import { BohoAuthOptions } from "./types.js";
 
-const createHandler = (method: string, options: AuthOptions) => {
+const createHandler = (options: BohoAuthOptions) => {
   const key = options.password || process.env.BOHO_PASSWORD;
   const secret = options.secret || process.env.BOHO_SECRET;
   const expiresIn = options.expiresIn || "1h";
 
   return async (req: Request) => {
-    // Implement logic for handling requests
-    // if (method === "GET") {
-    //   // Handle GET requests
-    //   return new Response("GET handler response");
-    // }
-    if (method === "POST") {
-      // Handle POST requests
-      try {
-        const { password } = await req.json();
+    try {
+      const { password } = await req.json();
 
-        if (!key || !secret) {
-          return new Response("Missing password or secret", { status: 500 });
-        }
-
-        if (password === key) {
-          const encodedSecret = new TextEncoder().encode(secret);
-          const jwt = await new jose.SignJWT({})
-            .setProtectedHeader({ alg: "HS256" })
-            .setIssuedAt()
-            .setExpirationTime(expiresIn)
-            .sign(encodedSecret);
-
-          return new Response("Authentication successful", {
-            headers: {
-              "Set-Cookie": `boho_token=${jwt}; Path=/; HttpOnly; Secure; SameSite=Strict`,
-            },
-          });
-        }
-
-        return new Response("Invalid password", { status: 401 });
-      } catch (error) {
-        return new Response("Internal server error", { status: 500 });
+      if (!key || !secret) {
+        return new Response("Missing password or secret", { status: 500 });
       }
+
+      if (password === key) {
+        const encodedSecret = new TextEncoder().encode(secret);
+        const jwt = await new jose.SignJWT({})
+          .setProtectedHeader({ alg: "HS256" })
+          .setIssuedAt()
+          .setExpirationTime(expiresIn)
+          .sign(encodedSecret);
+
+        return new Response("Authentication successful", {
+          headers: {
+            "Set-Cookie": `boho_token=${jwt}; Path=/; HttpOnly; Secure; SameSite=Strict`,
+          },
+        });
+      }
+
+      return new Response("Invalid password", { status: 401 });
+    } catch (error) {
+      return new Response("Internal server error", { status: 500 });
     }
-    return new Response("Method not allowed", { status: 405 });
   };
 };
 
-export const initializeAuth = (options: AuthOptions) => {
+export const bohoAuth = (options: BohoAuthOptions) => {
   const secret = options.secret || process.env.BOHO_SECRET;
 
   return {
     handlers: {
-      POST: createHandler("POST", options),
+      POST: createHandler(options),
     },
     middleware: async (request: NextRequest) => {
       const loginPath = options.middleware?.loginPath || "/login";

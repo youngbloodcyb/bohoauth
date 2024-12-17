@@ -1,4 +1,4 @@
-export type AuthOptions = {
+export type BohoAuthOptions = {
   // defaults to BOHO_PASSWORD
   password: string;
   // defaults to BOHO_SECRET
