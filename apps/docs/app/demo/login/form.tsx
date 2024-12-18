@@ -41,7 +41,7 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle className="text-xl text-center">
@@ -76,6 +76,9 @@ export default function LoginForm() {
           </form>
         </CardContent>
       </Card>
+      <p className="mt-2 text-xs">
+        password is <span className="text-muted-foreground">bohoauth</span>
+      </p>
     </div>
   );
 }
