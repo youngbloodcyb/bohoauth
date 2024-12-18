@@ -5,7 +5,7 @@ export const boho = bohoAuth({
   secret: process.env.BOHO_SECRET!,
   expiresIn: "1h",
   middleware: {
-    loginPath: "/login",
-    protectedPaths: ["/test"],
+    loginPath: "/demo/login",
+    protectedPaths: ["/demo/protected"],
   },
 });
