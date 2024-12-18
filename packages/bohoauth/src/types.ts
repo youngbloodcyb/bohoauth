@@ -15,5 +15,7 @@ export type BohoAuthOptions = {
     loginPath?: string;
     // defaults to []
     protectedPaths?: string[];
+    // defaults to /
+    redirectPath?: string;
   };
 };

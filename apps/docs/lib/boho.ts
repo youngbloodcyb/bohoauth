@@ -7,5 +7,6 @@ export const boho = bohoAuth({
   middleware: {
     loginPath: "/demo/login",
     protectedPaths: ["/demo/protected"],
+    redirectPath: "/demo/protected",
   },
 });

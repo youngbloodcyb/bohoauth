@@ -39,6 +39,7 @@ const createHandler = (options: BohoAuthOptions) => {
 
 export const bohoAuth = (options: BohoAuthOptions) => {
   const secret = options.secret || process.env.BOHO_SECRET;
+  const redirectPath = options.middleware?.redirectPath || "/";
 
   return {
     handlers: {
@@ -72,7 +73,7 @@ export const bohoAuth = (options: BohoAuthOptions) => {
 
         // Redirect away from login page if authenticated
         return isLoginPage
-          ? NextResponse.redirect(new URL("/", request.url))
+          ? NextResponse.redirect(new URL(redirectPath, request.url))
           : NextResponse.next();
       } catch (error) {
         // Invalid token behaves same as no token
