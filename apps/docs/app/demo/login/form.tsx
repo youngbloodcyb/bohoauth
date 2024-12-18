@@ -41,44 +41,38 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4">
-      <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle className="text-xl text-center">
-            bohoauth <span className="text-muted-foreground">보호</span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-2">
-            <div>
-              <Label htmlFor="password" className="sr-only">
-                Password
-              </Label>
-              <Input
-                id="password"
-                type="password"
-                name="password"
-                placeholder="Enter your password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                aria-describedby={error ? "password-error" : undefined}
-              />
-              {error && (
-                <p id="password-error" className="text-sm text-destructive">
-                  {error}
-                </p>
-              )}
-            </div>
-            <Button type="submit" className="w-full">
-              Sign in
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
-      <p className="mt-2 text-xs">
-        password is <span className="text-muted-foreground">bohoauth</span>
-      </p>
-    </div>
+    <main className="flex flex-col items-center h-screen w-full">
+      <div className="w-96 md:w-1/2 px-4 py-20 space-y-4">
+        <header>
+          <h1>bohoauth</h1>
+        </header>
+        <form onSubmit={handleSubmit} className="space-y-2">
+          <div>
+            <label htmlFor="password" className="sr-only">
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="password is bohoauth"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              aria-describedby={error ? "password-error" : undefined}
+              className="border-b"
+            />
+            {error && (
+              <p id="password-error" className="text-sm text-destructive">
+                {error}
+              </p>
+            )}
+          </div>
+          <button type="submit" className="underline text-blue-500">
+            sign in
+          </button>
+        </form>
+      </div>
+    </main>
   );
 }
