@@ -92,10 +92,10 @@ export function Building() {
           >
             <ul className="flex flex-col gap-2">
               <li className="hover:scale-105 transition-all duration-300">
-                <Link href="/">sponsors</Link>
+                <Link href="/demo">demo</Link>
               </li>
               <li className="hover:scale-105 transition-all duration-300">
-                <Link href="/">authors</Link>
+                <Link href="https://cameron.so/">author</Link>
               </li>
             </ul>
             <div className="h-[100px] w-[2px] bg-black" />
