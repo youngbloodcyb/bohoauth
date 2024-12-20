@@ -2,6 +2,12 @@ import * as jose from "jose";
 import { NextRequest, NextResponse } from "next/server.js";
 import { BohoAuthOptions } from "./types.js";
 
+/**
+ * Helper function to create a handler for bohoauth
+ *
+ * Takes options of type BohoAuthOptions
+ * returns a handler to be used in Next.js route handlers
+ */
 const createHandler = (options: BohoAuthOptions) => {
   const key = options.password || process.env.BOHO_PASSWORD;
   const secret = options.secret || process.env.BOHO_SECRET;
@@ -37,6 +43,12 @@ const createHandler = (options: BohoAuthOptions) => {
   };
 };
 
+/**
+ * Initializes boho auth
+ *
+ * Takes options of type BohoAuthOptions
+ * returns an object with handlers and middleware
+ */
 export const bohoAuth = (options: BohoAuthOptions) => {
   const secret = options.secret || process.env.BOHO_SECRET;
   const redirectPath = options.middleware?.redirectPath || "/";
@@ -81,13 +93,6 @@ export const bohoAuth = (options: BohoAuthOptions) => {
           ? NextResponse.next()
           : NextResponse.redirect(new URL(loginPath, request.url));
       }
-    },
-    // Optionally expose other utility methods
-    signIn: async () => {
-      // Custom sign-in logic
-    },
-    signOut: async () => {
-      // Custom sign-out logic
     },
   };
 };
