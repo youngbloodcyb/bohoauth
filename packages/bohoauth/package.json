@@ -1,9 +1,14 @@
 {
-  "name": "@repo/bohoauth",
+  "name": "bohoauth",
+  "version": "1.0.0",
+  "private": false,
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch"

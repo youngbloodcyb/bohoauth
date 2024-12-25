@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3001",
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@repo/ui": "workspace:*",
-    "@repo/bohoauth": "workspace:*",
+    "bohoauth": "workspace:*",
     "next": "14.2.8",
     "react": "catalog:react18",
     "react-dom": "catalog:react18"
