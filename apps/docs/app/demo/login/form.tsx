@@ -1,15 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@repo/ui/components/ui/button";
-import { Input } from "@repo/ui/components/ui/input";
-import { Label } from "@repo/ui/components/ui/label";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@repo/ui/components/ui/card";
 import { useRouter } from "next/navigation";
 
 export default function LoginForm() {

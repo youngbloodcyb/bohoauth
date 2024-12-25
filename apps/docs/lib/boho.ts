@@ -1,4 +1,4 @@
-import { bohoAuth } from "@repo/bohoauth";
+import { bohoAuth } from "bohoauth";
 
 export const boho = bohoAuth({
   password: process.env.BOHO_PASSWORD!,
