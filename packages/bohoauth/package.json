@@ -1,9 +1,12 @@
 {
   "name": "@repo/bohoauth",
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "dev": "tsc --watch",
-    "build": "tsc"
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch"
   },
   "exports": {
     ".": {
@@ -17,7 +20,8 @@
     "typescript": "latest"
   },
   "dependencies": {
-    "jose": "^5.9.6"
+    "jose": "^5.9.6",
+    "tsup": "^8.3.5"
   },
   "peerDependencies": {
     "next": "^14.0.0"
