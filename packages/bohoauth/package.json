@@ -1,6 +1,6 @@
 {
   "name": "bohoauth",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": false,
   "type": "module",
   "main": "./dist/index.js",
@@ -22,11 +22,11 @@
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^22.10.2",
-    "typescript": "latest"
+    "typescript": "latest",
+    "tsup": "^8.3.5"
   },
   "dependencies": {
-    "jose": "^5.9.6",
-    "tsup": "^8.3.5"
+    "jose": "^5.9.6"
   },
   "peerDependencies": {
     "next": "^14.0.0"
