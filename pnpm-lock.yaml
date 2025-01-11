@@ -66,6 +66,9 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@vercel/analytics':
+        specifier: ^1.4.1
+        version: 1.4.1(next@14.2.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       bohoauth:
         specifier: workspace:*
         version: link:../../packages/bohoauth
@@ -133,10 +136,10 @@ importers:
         version: 22.10.2
       tsup:
         specifier: ^8.3.5
-        version: 8.3.5(jiti@1.21.0)(postcss@8.4.38)(typescript@5.7.2)
+        version: 8.3.5(jiti@1.21.0)(postcss@8.4.38)(typescript@5.7.3)
       typescript:
         specifier: latest
-        version: 5.7.2
+        version: 5.7.3
 
   packages/eslint-config:
     devDependencies:
@@ -1000,6 +1003,32 @@ packages:
 
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
+
+  '@vercel/analytics@1.4.1':
+    resolution: {integrity: sha512-ekpL4ReX2TH3LnrRZTUKjHHNpNy9S1I7QmS+g/RQXoSUQ8ienzosuX7T9djZ/s8zPhBx1mpHP/Rw5875N+zQIQ==}
+    peerDependencies:
+      '@remix-run/react': ^2
+      '@sveltejs/kit': ^1 || ^2
+      next: '>= 13'
+      react: ^18 || ^19 || ^19.0.0-rc
+      svelte: '>= 4'
+      vue: ^3
+      vue-router: ^4
+    peerDependenciesMeta:
+      '@remix-run/react':
+        optional: true
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      react:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
+      vue-router:
+        optional: true
 
   '@vercel/style-guide@6.0.0':
     resolution: {integrity: sha512-tu0wFINGz91EPwaT5VjSqUwbvCY9pvLach7SPG4XyfJKPU9Vku2TFa6+AyzJ4oroGbo9fK+TQhIFHrnFl0nCdg==}
@@ -3049,8 +3078,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  typescript@5.7.2:
-    resolution: {integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==}
+  typescript@5.7.3:
+    resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -3952,6 +3981,11 @@ snapshots:
       eslint-visitor-keys: 3.4.3
 
   '@ungap/structured-clone@1.2.0': {}
+
+  '@vercel/analytics@1.4.1(next@14.2.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+    optionalDependencies:
+      next: 14.2.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
 
   '@vercel/style-guide@6.0.0(@next/eslint-plugin-next@14.2.8)(eslint@8.57.0)(prettier@3.3.3)(typescript@5.6.3)':
     dependencies:
@@ -6173,7 +6207,7 @@ snapshots:
 
   tslib@2.6.2: {}
 
-  tsup@8.3.5(jiti@1.21.0)(postcss@8.4.38)(typescript@5.7.2):
+  tsup@8.3.5(jiti@1.21.0)(postcss@8.4.38)(typescript@5.7.3):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.24.2)
       cac: 6.7.14
@@ -6193,7 +6227,7 @@ snapshots:
       tree-kill: 1.2.2
     optionalDependencies:
       postcss: 8.4.38
-      typescript: 5.7.2
+      typescript: 5.7.3
     transitivePeerDependencies:
       - jiti
       - supports-color
@@ -6303,7 +6337,7 @@ snapshots:
 
   typescript@5.6.3: {}
 
-  typescript@5.7.2: {}
+  typescript@5.7.3: {}
 
   unbox-primitive@1.0.2:
     dependencies:
