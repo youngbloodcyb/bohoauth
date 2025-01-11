@@ -1,5 +1,12 @@
 # docs
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies [40b6e7f]
+  - bohoauth@1.1.1
+
 ## 1.0.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # bohoauth
 
+## 1.1.1
+
+### Patch Changes
+
+- 40b6e7f: Add a README file
+
 ## 1.1.0
 
 ### Minor Changes
