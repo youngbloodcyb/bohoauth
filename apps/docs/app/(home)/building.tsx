@@ -101,13 +101,17 @@ export function Building() {
             <div className="h-[100px] w-[2px] bg-black" />
             <ul className="flex flex-col gap-2">
               <li className="hover:scale-105 transition-all duration-300">
-                <Link href="/">contributing</Link>
+                <Link href="https://github.com/youngbloodcyb/bohoauth">
+                  contributing
+                </Link>
               </li>
               <li className="hover:scale-105 transition-all duration-300">
-                <Link href="/">docs</Link>
+                <Link href="https://github.com/youngbloodcyb/bohoauth">
+                  docs
+                </Link>
               </li>
               <li className="hover:scale-105 transition-all duration-300">
-                <Link href="/">bohoauth</Link>
+                <Link href="#">bohoauth</Link>
               </li>
             </ul>
           </div>
