@@ -62,3 +62,7 @@ npm install bohoauth
    Make sure to configure where the middleware should run. Reference the [Next.js docs](https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher) for more information.
 
 4. Finally, add a form to your login page that will submit to the `/api/login` route.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
