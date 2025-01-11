@@ -4,7 +4,7 @@ export function Building() {
   return (
     <div
       id="box"
-      className="relative w-[500px] h-[800px] transform-style-3d"
+      className="relative w-[500px] h-[800px] transform-style-3d hidden lg:block"
       style={{
         transform: "rotateX(-15deg) rotateY(-30deg)",
       }}

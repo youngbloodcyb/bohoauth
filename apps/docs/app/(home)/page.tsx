@@ -1,4 +1,5 @@
 import { Building } from "./building";
+import { List } from "./list";
 
 export default function Page() {
   return (
@@ -8,6 +9,7 @@ export default function Page() {
           boho auth <span className="italic font-bold">보호</span>
         </h1>
         <p className="italic text-muted-foreground">non-user authentication</p>
+        <List />
       </div>
       <Building />
     </div>
