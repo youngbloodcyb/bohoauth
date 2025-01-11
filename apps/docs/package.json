@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@repo/ui": "workspace:*",
+    "@vercel/analytics": "^1.4.1",
     "bohoauth": "workspace:*",
     "next": "14.2.8",
     "react": "catalog:react18",
