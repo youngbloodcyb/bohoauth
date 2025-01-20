@@ -1,5 +1,11 @@
 # bohoauth
 
+## 1.1.2
+
+### Patch Changes
+
+- 0fd55de: update peer dependency for nextjs
+
 ## 1.1.1
 
 ### Patch Changes
