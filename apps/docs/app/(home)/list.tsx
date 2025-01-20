@@ -10,6 +10,9 @@ export function List() {
         <Link href="https://cameron.so">author</Link>
       </li>
       <li>
+        <Link href="/docs">docs</Link>
+      </li>
+      <li>
         <Link href="https://github.com/youngbloodcyb/bohoauth">github</Link>
       </li>
     </ul>

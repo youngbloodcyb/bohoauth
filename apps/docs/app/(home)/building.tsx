@@ -106,9 +106,7 @@ export function Building() {
                 </Link>
               </li>
               <li className="hover:scale-105 transition-all duration-300">
-                <Link href="https://github.com/youngbloodcyb/bohoauth">
-                  docs
-                </Link>
+                <Link href="/docs">docs</Link>
               </li>
               <li className="hover:scale-105 transition-all duration-300">
                 <Link href="#">bohoauth</Link>
