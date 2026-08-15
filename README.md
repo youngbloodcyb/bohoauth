@@ -1,3 +1,5 @@
+
+
 # Boho Auth
 
 Boho auth provides a simple way to password protect pages in your Next.js application.
@@ -41,9 +43,9 @@ npm install bohoauth
    - `secret`: The secret to use for authentication. Recommended to use an environment variable. If no value is provided, boho auth will look for a `BOHO_SECRET` environment variable.
    - `expiresIn`: The expiration time for the authentication token. The default is `1h`. View the [jose docs](https://github.com/panva/jose/blob/main/docs/README.md) for more information.
    - `middleware`: The middleware options to use for authentication.
-   - `loginPath`: The path to redirect to when the user is not authenticated.
-   - `protectedPaths`: The paths to protect, passed in as an array of strings.
-   - `redirectPath`: The path to redirect to when the user is authenticated.
+     - `loginPath`: The path to redirect to when the user is not authenticated.
+     - `protectedPaths`: The paths to protect, passed in as an array of strings.
+     - `redirectPath`: The path to redirect to when the user is authenticated.
 
 2. Create a route handler `app/api/login/route.ts` (or whatever API route you want to use to authenticate) and paste the following code:
 
