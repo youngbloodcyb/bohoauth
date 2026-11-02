@@ -159,6 +159,11 @@ export default boho.middleware;`}</code>
                 : Token expiration time. Defaults to "1h".
               </li>
               <li>
+                <code className="bg-muted px-1.5 py-0.5 rounded">basePath</code>
+                : Where the route handlers are mounted. Defaults to "/api/boho".
+                These routes are never protected.
+              </li>
+              <li>
                 <code className="bg-muted px-1.5 py-0.5 rounded">
                   middleware.loginPath
                 </code>
@@ -168,7 +173,14 @@ export default boho.middleware;`}</code>
                 <code className="bg-muted px-1.5 py-0.5 rounded">
                   middleware.protectedPaths
                 </code>
-                : Array of paths to protect.
+                : Array of paths or patterns to protect. See Path Patterns
+                below.
+              </li>
+              <li>
+                <code className="bg-muted px-1.5 py-0.5 rounded">
+                  middleware.publicPaths
+                </code>
+                : Exceptions to protectedPaths that stay public.
               </li>
               <li>
                 <code className="bg-muted px-1.5 py-0.5 rounded">
@@ -177,6 +189,78 @@ export default boho.middleware;`}</code>
                 : Path to redirect after successful login.
               </li>
             </ul>
+          </div>
+
+          <div>
+            <h2 className="text-2xl mb-4">Path Patterns</h2>
+            <p className="mb-4">
+              <code className="bg-muted px-1.5 py-0.5 rounded">
+                protectedPaths
+              </code>{" "}
+              and
+              <code className="bg-muted px-1.5 py-0.5 rounded">
+                publicPaths
+              </code>{" "}
+              accept plain paths, patterns with parameters (the same syntax as
+              the Next.js middleware matcher), or regular expressions.
+            </p>
+            <ul className="space-y-3 mb-4">
+              <li>
+                <code className="bg-muted px-1.5 py-0.5 rounded">
+                  {"/dashboard"}
+                </code>
+                : matches /dashboard and everything under it.
+              </li>
+              <li>
+                <code className="bg-muted px-1.5 py-0.5 rounded">{"/:id"}</code>
+                : matches /abc, but not /abc/def.
+              </li>
+              <li>
+                <code className="bg-muted px-1.5 py-0.5 rounded">
+                  {"/:id/:rest*"}
+                </code>
+                : matches /abc and everything under it.
+              </li>
+              <li>
+                <code className="bg-muted px-1.5 py-0.5 rounded">
+                  {"/blog/:slug*"}
+                </code>
+                : matches /blog, /blog/a, /blog/a/b.
+              </li>
+              <li>
+                <code className="bg-muted px-1.5 py-0.5 rounded">
+                  {"/docs/:path+"}
+                </code>
+                : matches /docs/a, /docs/a/b, but not /docs.
+              </li>
+              <li>
+                <code className="bg-muted px-1.5 py-0.5 rounded">
+                  {"/shop/:category?"}
+                </code>
+                : matches /shop and /shop/shoes.
+              </li>
+            </ul>
+            <p className="mb-2">
+              To protect a top-level dynamic route like
+              <code className="bg-muted px-1.5 py-0.5 rounded">
+                app/[id]/page.tsx
+              </code>
+              , or everything except a few public pages:
+            </p>
+            <pre className="bg-zinc-950 text-zinc-50 p-4 rounded-lg mt-2">
+              <code>{`// a top-level dynamic route
+protectedPaths: ["/:id"],
+
+// everything except a few pages
+protectedPaths: ["/"],
+publicPaths: ["/about", "/blog/:slug*"],`}</code>
+            </pre>
+            <p className="mt-4">
+              The login page, the route handlers, and Next.js static assets are
+              always allowed, so protecting
+              <code className="bg-muted px-1.5 py-0.5 rounded">/</code>{" "}
+              doesn&apos;t block users from logging in.
+            </p>
           </div>
 
           <div>
