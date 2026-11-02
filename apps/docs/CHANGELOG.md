@@ -1,5 +1,14 @@
 # docs
 
+## 1.0.6
+
+### Patch Changes
+
+- 78da3f6: Document path patterns, `publicPaths` and `basePath`, and add a protected dynamic route to the demo at `/demo/posts/[id]`.
+- Updated dependencies [7af5838]
+- Updated dependencies [a6a8ec1]
+  - bohoauth@1.3.0
+
 ## 1.0.5
 
 ### Patch Changes
