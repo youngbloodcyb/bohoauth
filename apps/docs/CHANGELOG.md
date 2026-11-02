@@ -1,5 +1,15 @@
 # docs
 
+## 1.0.5
+
+### Patch Changes
+
+- e590b18: Upgrade the docs app to Next.js 16 and React 19, and update the demo to use the catch-all route handlers.
+- Updated dependencies [55bbd6e]
+- Updated dependencies [9ca024b]
+- Updated dependencies [90f50a2]
+  - bohoauth@1.2.0
+
 ## 1.0.4
 
 ### Patch Changes
