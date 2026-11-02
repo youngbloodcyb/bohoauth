@@ -4,6 +4,7 @@ import { createMiddleware } from "./middleware.js";
 import { BohoAuthOptions } from "./types.js";
 
 export type { BohoAuthOptions } from "./types.js";
+export type { PathPattern } from "./paths.js";
 export type { Session } from "./handlers/session.js";
 
 /**
