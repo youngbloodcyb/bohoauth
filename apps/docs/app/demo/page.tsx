@@ -33,6 +33,22 @@ export default function Page() {
               </a>
             </p>
           </div>
+          <div>
+            <p className="text-muted-foreground">
+              Or a dynamic route protected with{" "}
+              <code className="bg-muted px-1.5 py-0.5 rounded">
+                /demo/posts/:id
+              </code>
+              :{" "}
+              <a href="/demo/posts/1" className="underline text-blue-500">
+                /demo/posts/1
+              </a>
+              ,{" "}
+              <a href="/demo/posts/hello" className="underline text-blue-500">
+                /demo/posts/hello
+              </a>
+            </p>
+          </div>
         </section>
       </article>
     </main>
