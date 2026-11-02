@@ -11,7 +11,8 @@
   },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch"
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "test": "vitest run"
   },
   "exports": {
     ".": {
@@ -27,12 +28,13 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.20.5",
     "next": "16.4.3",
     "react": "catalog:react19",
     "react-dom": "catalog:react19",
     "tsup": "^8.3.5",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vitest": "^3.2.7"
   },
   "dependencies": {
     "jose": "^5.9.6"

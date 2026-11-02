@@ -36,10 +36,12 @@ npm install bohoauth
    - `password`: The password to use for authentication. Recommended to use an environment variable. If no value is provided, boho auth will look for a `BOHO_PASSWORD` environment variable.
    - `secret`: The secret to use for authentication. Recommended to use an environment variable. If no value is provided, boho auth will look for a `BOHO_SECRET` environment variable.
    - `expiresIn`: The expiration time for the authentication token. The default is `1h`. View the [jose docs](https://github.com/panva/jose/blob/main/docs/README.md) for more information.
+   - `basePath`: Where the route handlers are mounted. The default is `/api/boho`. These routes are never protected.
    - `middleware`: The middleware options to use for authentication.
-   - `loginPath`: The path to redirect to when the user is not authenticated.
-   - `protectedPaths`: The paths to protect, passed in as an array of strings.
-   - `redirectPath`: The path to redirect to when the user is authenticated.
+     - `loginPath`: The path to redirect to when the user is not authenticated.
+     - `protectedPaths`: The paths to protect. See [Path patterns](#path-patterns).
+     - `publicPaths`: Exceptions to `protectedPaths` that stay public. See [Path patterns](#path-patterns).
+     - `redirectPath`: The path to redirect to when the user is authenticated.
 
 2. Create a catch-all route handler at `app/api/boho/[...boho]/route.ts`:
 
@@ -99,6 +101,51 @@ npm install bohoauth
 ### Upgrading from `app/api/login/route.ts`
 
 Existing `app/api/login/route.ts` files that export `POST` keep working. A `POST` to any path that isn't a known action is treated as login and logs a deprecation warning. This fallback will be removed in the next major version, so move to the catch-all route when you can.
+
+## Path patterns
+
+`protectedPaths` and `publicPaths` accept plain paths, patterns with parameters, or regular expressions. Parameters use the same syntax as the Next.js middleware `matcher`.
+
+| Pattern            | Matches                               | Doesn't match           |
+| ------------------ | ------------------------------------- | ----------------------- |
+| `/dashboard`       | `/dashboard`, `/dashboard/settings`   | `/dashboard-old`        |
+| `/:id`             | `/abc`, `/123`                        | `/`, `/abc/def`         |
+| `/:id/:rest*`      | `/abc`, `/abc/def`, `/abc/def/ghi`    | `/`                     |
+| `/blog/:slug*`     | `/blog`, `/blog/a`, `/blog/a/b`       | `/blogs`                |
+| `/docs/:path+`     | `/docs/a`, `/docs/a/b`                | `/docs`                 |
+| `/shop/:category?` | `/shop`, `/shop/shoes`                | `/shop/shoes/red`       |
+| `/^\/org\/\d+/`    | `/org/1`, `/org/42/settings`          | `/org/abc`              |
+
+- **Plain paths** match the path and everything under it, at segment boundaries.
+- **Patterns with parameters** match the whole path. Add `/:rest*` at the end to include subpaths.
+- **A parameter must be a whole segment.** `/post/:id` works; `/post-:id` doesn't. Use a RegExp for anything more complex.
+- **Matching is case-sensitive**, like Next.js routes. A trailing slash in the URL is ignored.
+- **Invalid patterns throw when `bohoAuth()` is called**, so mistakes show up at startup.
+
+### Protecting dynamic routes
+
+To protect a top-level dynamic route like `app/[id]/page.tsx`:
+
+```ts
+middleware: {
+  loginPath: "/login",
+  protectedPaths: ["/:id"],
+},
+```
+
+### Protecting everything except a few pages
+
+Protect `/` and list the exceptions in `publicPaths`. A public match always wins over a protected one.
+
+```ts
+middleware: {
+  loginPath: "/login",
+  protectedPaths: ["/"],
+  publicPaths: ["/about", "/pricing", "/blog/:slug*"],
+},
+```
+
+You don't need to list the login page, boho's API routes (`basePath`), or Next.js static assets (`/_next/static`). They're always allowed, so protecting `/` doesn't block users from logging in.
 
 ## Contributing
 
