@@ -21,9 +21,9 @@ type MiddlewareOptions = {
  */
 export type BohoAuthOptions = {
   // defaults to BOHO_PASSWORD
-  password: string;
+  password?: string;
   // defaults to BOHO_SECRET
-  secret: string;
+  secret?: string;
   // defaults to 1h
   expiresIn?: number | string | Date;
   // middleware options
