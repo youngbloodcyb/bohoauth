@@ -28,8 +28,11 @@
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^22.10.2",
-    "typescript": "latest",
-    "tsup": "^8.3.5"
+    "next": "16.4.3",
+    "react": "catalog:react19",
+    "react-dom": "catalog:react19",
+    "tsup": "^8.3.5",
+    "typescript": "catalog:"
   },
   "dependencies": {
     "jose": "^5.9.6"

@@ -7,22 +7,23 @@
     "lint": "eslint ."
   },
   "peerDependencies": {
-    "react": "^18"
+    "react": "^18 || ^19"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "catalog:",
-    "@types/react": "catalog:react18",
+    "@types/react": "catalog:react19",
     "autoprefixer": "^10",
     "postcss": "^8",
     "postcss-load-config": "^6",
+    "react": "catalog:react19",
     "tailwindcss": "catalog:",
     "typescript": "catalog:"
   },
   "dependencies": {
-    "@radix-ui/react-label": "^2.1.1",
-    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-label": "^2.1.17",
+    "@radix-ui/react-slot": "^1.5.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "catalog:",
