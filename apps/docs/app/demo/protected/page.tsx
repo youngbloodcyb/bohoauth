@@ -1,12 +1,4 @@
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-
-export default async function Page() {
-  async function signOut() {
-    "use server";
-    cookies().delete("boho_token");
-    redirect("/demo/login");
-  }
+export default function Page() {
   return (
     <main className="flex flex-col items-center h-screen w-full">
       <article className="w-96 md:w-1/2 px-4 py-20">
@@ -26,7 +18,11 @@ export default async function Page() {
             </p>
           </div>
           <div>
-            <form action={signOut} className="text-muted-foreground">
+            <form
+              action="/api/boho/logout"
+              method="post"
+              className="text-muted-foreground"
+            >
               <button type="submit" className="underline text-blue-500">
                 sign out
               </button>

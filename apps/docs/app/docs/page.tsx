@@ -76,16 +76,28 @@ export const boho = bohoAuth({
 
               <li>
                 <p className="mb-2">
-                  Create a route handler{" "}
+                  Create a catch-all route handler{" "}
                   <code className="bg-muted px-1.5 py-0.5 rounded">
-                    app/api/login/route.ts
+                    app/api/boho/[...boho]/route.ts
+                  </code>
+                  . It serves{" "}
+                  <code className="bg-muted px-1.5 py-0.5 rounded">
+                    POST /api/boho/login
+                  </code>
+                  ,{" "}
+                  <code className="bg-muted px-1.5 py-0.5 rounded">
+                    POST /api/boho/logout
+                  </code>{" "}
+                  and{" "}
+                  <code className="bg-muted px-1.5 py-0.5 rounded">
+                    GET /api/boho/session
                   </code>
                   :
                 </p>
                 <pre className="bg-zinc-950 text-zinc-50 p-4 rounded-lg mt-2">
                   <code>{`import { boho } from "@/lib/boho";
 
-export const { POST } = boho.handlers;`}</code>
+export const { GET, POST } = boho.handlers;`}</code>
                 </pre>
               </li>
 
@@ -102,11 +114,20 @@ export default boho.middleware;`}</code>
 
               <li>
                 <p>
-                  Finally, add a form to your login page that will submit to the{" "}
+                  Finally, add a form to your login page that submits a{" "}
                   <code className="bg-muted px-1.5 py-0.5 rounded">
-                    /api/login
+                    password
                   </code>{" "}
-                  route.
+                  field to{" "}
+                  <code className="bg-muted px-1.5 py-0.5 rounded">
+                    /api/boho/login
+                  </code>
+                  . A plain HTML form works without any JavaScript. To sign out,
+                  submit a form to{" "}
+                  <code className="bg-muted px-1.5 py-0.5 rounded">
+                    /api/boho/logout
+                  </code>
+                  .
                 </p>
               </li>
             </ol>
